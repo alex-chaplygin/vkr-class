@@ -1,0 +1,16 @@
+\documentclass{vkr}
+\usepackage[english, russian]{babel} % переносы
+\usepackage{graphicx} % для вставки картинок
+\graphicspath{{images/}} % путь к изображениям
+
+%\usepackage{xltabular} % для вставки таблиц
+
+\newcommand{\centrow}{\centering\arraybackslash} % командой \centrow можно центрировать одну ячейку (заголовок) в столбце типа X или p, оставив в оcтальных ячейках другой тип выравнивания
+\newcommand{\finishhead}{\endhead\hline\endlastfoot}
+
+% из-за того что babel переопределяет имена заголовков
+\addto\captionsrussian{\renewcommand{\figurename}{Рисунок}}
+
+\usepackage{array} % для определения новых типов столбцов таблиц
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} % новый тип столбца C - фиксированная ширина столбца с выравниванием по центру
+

@@ -1,0 +1,81 @@
+\newsection
+\section{Рабочий проект}
+\subsection{Классы, используемые при разработке сайта}
+
+Можно выделить следующий список классов и их методов, использованных при разработке web-приложения (таблица \ref{class:table}). Для таблицы используется пакет longtable c целью проверки совместимости между xltabular и longtable. Для новых таблиц предпочтительнее использовать пакет xltabular.
+
+\begin{longtable}[l]{|p{2.5cm}|p{2.5cm}|p{4.85cm}|p{4.85cm}|}
+\caption{Описание классов Bitrix, используемых в приложении\label{class:table}}\\
+\hline \centrow Название класса & \centrow Модуль, к которому относится класс & \centrow Описание класса & \centrow Методы \\
+\hline \centrow 1 & \centrow 2 & \centrow 3 & \centrow 4\\
+\endfirsthead
+\caption*{Продолжение таблицы \ref{class:table}}\\
+\hline \centrow 1 & \centrow 2 & \centrow 3 & \centrow 4\\
+\finishhead
+\hline CMain & Главный модуль & CMain – главный класс страницы web-приложения. После одного из этапов по загрузке страницы в сценарии становится доступным инициализированный системой объект данного класса с именем \$APPLICATION & void ShowTitle(string property\_code = «title», bool strip\_tags = true)
+Выводит заголовок страницы
+void SetTitle(string title)
+Устанавливает заголовок страницы
+
+void ShowCSS(bool external = true, bool XhtmlStyle = true)
+Выводит таблицу стилей CSS страницы\\
+\hline CFile & Главный модуль & CFile – Класс для работы с файлами и изображениями & array GetFileArray (int file\_id)
+Метод возвращает массив, содержащий описание файла (путь к файлу, имя файла, размер) с идентификатором file\_id
+\end{longtable}
+\vspace{-\tablebelowskip}
+
+\subsection{Модульное тестирование разработанного web-сайта}
+
+Модульный тест для класса User из модели данных представлен на рисунке \ref{unitUser:image}.
+
+\begin{figure}
+\begin{lstlisting}[language=Python]
+from django.test import TestCase
+from .models import *
+User = get_user_model()
+
+
+class ShpoTestCases(TestCase):
+
+    def setUp(self) -> None:
+        self.user = User.objects.create(username='testtestovich', password='testtestovich', first_name='Sad', last_name='')
+
+    def test_2(self):
+
+        self.assertEqual(self.user.first_name, 'Sad')
+        self.assertEqual(self.user.last_name, 'Cat')
+        print((self.user))
+        print((self.user.first_name))
+        print((self.user.last_name))
+\end{lstlisting}
+\caption{Модульный тест класса User}
+\label{unitUser:image}
+\end{figure}
+
+\subsection{Системное тестирование разработанного web-сайта}
+
+На рисунке \ref{main:image} представлена главная страница сайта «Русатом – Аддитивные технологии».
+
+\begin{figure}
+\center{\includegraphics[width=1\linewidth]{main1}}
+\center{\includegraphics[width=1\linewidth]{main2}}
+\center{\includegraphics[width=1\linewidth]{main3}}
+\caption{Главная страница сайта «Русатом – Аддитивные технологии»}
+\label{main:image}
+\end{figure}
+
+На рисунке \ref{menu:image} представлен динамический вывод заголовков, включающий в себя искомые фразы при поиске фраз.
+
+\begin{figure}
+\center{\includegraphics[width=1\linewidth]{menu}}
+\caption{Динамический вывод заголовков}
+\label{menu:image}
+\end{figure}
+
+На рисунке \ref{enter:image} представлен ввод данных для публикации новости.
+
+\begin{figure}
+\center{\includegraphics[width=1\linewidth]{enter}}
+\caption{Ввод данных для публикации очень-очень длинной, интересной и полезной новости}
+\label{enter:image}
+\end{figure}
