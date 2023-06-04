@@ -222,8 +222,8 @@
     {\@dblarg{\@sect{#1}{#2}{#3}{#4}{#5}{#6}}}}
 
 \newcommand\section{
-  \setcounter{figure}{0}
-  \setcounter{table}{0}
+  \setcounter{figure}{0}%
+  \setcounter{table}{0}%
   \@startsection {section}{1}{\parindent}%
                                    {4mm}%
                                    {4mm}%
@@ -296,6 +296,8 @@
 
 
 \newcounter{figure}
+\newcounter{figurecnt} %всего рисунков
+\setcounter{figure}{0}
 \renewcommand \thefigure{\thesection.\@arabic\c@figure}
 \def\fps@figure{tbp}
 \def\ftype@figure{1} % тип объекта
@@ -303,7 +305,9 @@
 \def\fnum@figure{\figurename\nobreakspace\thefigure}
 \newcommand\figurename{}
 \newenvironment{figure}
-               {\@float{figure}}
+               {
+                 \if@app{\refstepcounter{figurecnt}}{}\fi
+                 \@float{figure}}
                {\end@float}
 
 \newlength\abovecaptionskip
@@ -323,14 +327,21 @@
 
 % Таблицы
 
+\usepackage{array} % для определения новых типов столбцов таблиц
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} % новый тип столбца C - фиксированная ширина столбца с выравниванием по центру
+
 \newcounter{table}
+\newcounter{tablecnt} %всего таблиц
+\setcounter{tablecnt}{0}
 \renewcommand\thetable{\thesection.\@arabic\c@table}
 \def\fps@table{tbp}
 \def\ftype@table{2}
 \def\ext@table{lot}
 \def\fnum@table{\tablename\nobreakspace\thetable}
 \newenvironment{table}
-               {\@float{table}}
+               {
+                 \if@app{\refstepcounter{tablecnt}}{}\fi
+                 \@float{table}}
 {\end@float}
 
 % Содержание
@@ -365,14 +376,22 @@
 	\advance \pnul\last
 	\multiply \last-10
 	\advance \last\c
-	#1~#2%
+	\arabic{#1}~#2%
 	\ifnum\pnul=1#5\else%
 	\ifcase\last#5\or#3\or#4\or#4\or#4\else#5\fi
 	\fi
 }
 
-\newcounter{pages} % всего страниц
-\def\@enddocumenthook{\label{ENDDOC}}
+% подсчет страниц
+\newcounter{lastpage}
+\setcounter{lastpage}{0}
+% пишем в aux файл команду установки счетчика на номер последней страницы
+% aux файл автоматически читается в начале документа
+\AtEndDocument{\immediate\write\@auxout%
+  {\string\setcounter{lastpage}{\the\c@page}
+    \string\setcounter{figurecnt}{\arabic{figurecnt}}
+    \string\setcounter{tablecnt}{\arabic{tablecnt}}}
+}
 
 \endinput
 
