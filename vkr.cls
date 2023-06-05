@@ -187,7 +187,7 @@
 \begin{center}
 \normalsize{Курск \the\year{} г.}
 \end{center}
-\end{titlepage}
+  \end{titlepage}
 }
 
 % Разделы
@@ -297,7 +297,6 @@
 
 \newcounter{figure}
 \newcounter{figurecnt} %всего рисунков
-\setcounter{figure}{0}
 \renewcommand \thefigure{\thesection.\@arabic\c@figure}
 \def\fps@figure{tbp}
 \def\ftype@figure{1} % тип объекта
@@ -332,7 +331,6 @@
 
 \newcounter{table}
 \newcounter{tablecnt} %всего таблиц
-\setcounter{tablecnt}{0}
 \renewcommand\thetable{\thesection.\@arabic\c@table}
 \def\fps@table{tbp}
 \def\ftype@table{2}
@@ -351,6 +349,9 @@
 \newcommand\@dotsep{4.5}
 
 \newcommand\tableofcontents{%
+    \setcounter{tablecnt}{0}
+    \setcounter{figurecnt}{0}
+    \setcounter{числоПлакатов}{0}
     \section*{СОДЕРЖАНИЕ}%
     \@starttoc{toc}%
     }
@@ -389,9 +390,17 @@
 % aux файл автоматически читается в начале документа
 \AtEndDocument{\immediate\write\@auxout%
   {\string\setcounter{lastpage}{\the\c@page}
+    \string\setcounter{числоПлакатов}{\arabic{числоПлакатов}}
     \string\setcounter{figurecnt}{\arabic{figurecnt}}
     \string\setcounter{tablecnt}{\arabic{tablecnt}}}
 }
+
+% Плакаты
+\newenvironment{плакат}
+               {\begin{figure}[ht!]
+               \stepcounter{числоПлакатов}}
+               {\end{figure}}
+\newcounter{числоПлакатов}               
 
 \endinput
 

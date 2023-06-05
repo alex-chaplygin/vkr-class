@@ -3,7 +3,25 @@
 Графический материал, выполненный на отдельных листах,
 изображен на рисунках А.1--А.10.
 
-\renewcommand{\thefigure}{А.\arabic{figure}} % шаблон номера рисунков
+\renewcommand{\thefigure}{А.\arabic{figure}} % шаблон номера для плакатов
+
+\begin{плакат}
+    \includegraphics[width=1.3\linewidth]{плакат1.png}
+    \caption{Сведения о ВКРБ}
+    \label{pl1:image}      
+\end{плакат}
+
+\begin{плакат}
+    \includegraphics[width=1.3\linewidth]{плакат2.png}
+    \caption{Цель и задачи разработки}
+    \label{pl2:image}      
+\end{плакат}
+
+\begin{плакат}
+    \includegraphics[width=1.3\linewidth]{плакат3.png}
+    \caption{Концептуальная модель сайта}
+    \label{pl3:image}      
+\end{плакат}
 
 %\begin{figure}
 %  \begin{adjustbox}{addcode={\begin{minipage}{\width}}{\caption{%
