@@ -347,6 +347,7 @@
 \newcommand\@pnumwidth{1.55em}
 \newcommand\@tocrmarg{2.55em}
 \newcommand\@dotsep{4.5}
+\setcounter{tocdepth}{4}
 
 \newcommand\tableofcontents{%
     \setcounter{tablecnt}{0}
@@ -354,12 +355,13 @@
     \setcounter{числоПлакатов}{0}
     \section*{СОДЕРЖАНИЕ}%
     \@starttoc{toc}%
+    \списокПлакатов
     }
-               
-\newcommand*\l@section{\@dottedtocline{1}{1.5em}{2.3em}}
-\newcommand*\l@subsection{\@dottedtocline{2}{1.5em}{2.3em}}
-\newcommand*\l@subsubsection{\@dottedtocline{3}{3.8em}{3.2em}}
-\newcommand*\l@paragraph{\@dottedtocline{4}{7.0em}{4.1em}}
+
+\newcommand*\l@section{\@dottedtocline{1}{1.5em}{1.3em}}
+\newcommand*\l@subsection{\@dottedtocline{2}{1.5em}{1.6em}}
+\newcommand*\l@subsubsection{\@dottedtocline{3}{1.5em}{2.6em}}
+\newcommand*\l@paragraph{\@dottedtocline{4}{1.5em}{3.3em}}
 
 \raggedbottom
 
@@ -401,6 +403,30 @@
                \stepcounter{числоПлакатов}}
                {\end{figure}}
 \newcounter{числоПлакатов}               
+\newcommand{\заголовок}[1]{%
+  \добавитьПлакат{\arabic{числоПлакатов}}{#1}
+  \caption{#1}}
+
+\def\добавитьПлакат#1#2{% добавляет в aux команду записи в lop файл
+  \immediate\write\@auxout
+      {\string\@writefile{lop}{\печатьПлакат{Лист #1. #2}}}
+}
+
+\def\печатьПлакат#1{% вывод строки списка плакатов
+  \par #1}
+
+% читает и вставляет файл плакатов (main.lop), перезаписывает его и открывает
+\def\списокПлакатов{%
+  \begingroup
+    \makeatletter
+    \@input{\jobname.lop}%
+    \if@filesw
+      \expandafter\newwrite\csname tf@lop\endcsname
+      \immediate\openout \csname tf@lop\endcsname \jobname.lop\relax
+    \fi
+    \@nobreakfalse
+    \endgroup
+}
 
 \endinput
 
