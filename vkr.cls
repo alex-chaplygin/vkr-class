@@ -358,10 +358,27 @@
     \списокПлакатов
     }
 
-\newcommand*\l@section{\@dottedtocline{1}{1.5em}{1.3em}}
-\newcommand*\l@subsection{\@dottedtocline{2}{1.5em}{1.6em}}
-\newcommand*\l@subsubsection{\@dottedtocline{3}{1.5em}{2.6em}}
-\newcommand*\l@paragraph{\@dottedtocline{4}{1.5em}{3.3em}}
+\newcommand*\l@section{\@dottedtocline{1}{0pt}{1.3em}}
+\newcommand*\l@subsection{\@dottedtocline{2}{0pt}{1.6em}}
+\newcommand*\l@subsubsection{\@dottedtocline{3}{0pt}{2.6em}}
+\newcommand*\l@paragraph{\@dottedtocline{4}{0pt}{3.3em}}
+
+\def\@dottedtocline#1#2#3#4#5{%
+  \ifnum #1>\c@tocdepth \else
+    \vskip \z@ \@plus.2\p@
+    {\leftskip #2\relax \rightskip \@tocrmarg \parfillskip -\rightskip
+     \parindent #2\relax\@afterindenttrue
+     \interlinepenalty\@M
+     \leavevmode
+     \@tempdima #3\relax
+     {#4}
+     \leaders\hbox{$\m@th
+        \mkern \@dotsep mu\hbox{.}\mkern \@dotsep
+        mu$}\hfill
+     \nobreak
+     \hb@xt@\@pnumwidth{\hfil\normalfont \normalcolor #5}%
+     \par}%
+  \fi}
 
 \raggedbottom
 
