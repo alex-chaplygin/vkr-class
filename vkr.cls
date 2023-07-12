@@ -221,6 +221,12 @@
     {\@ssect{#3}{#4}{#5}{#7}}%
     {\@dblarg{\@sect{#1}{#2}{#3}{#4}{#5}{#6}}}}
 
+\newcommand\nohyph{% запрет переносов в параграфе
+  \pretolerance=10000
+  \tolerance=2000 
+  \emergencystretch=10pt
+}
+ 
 \newcommand\section{
   \setcounter{figure}{0}%
   \setcounter{table}{0}%
@@ -232,7 +238,7 @@
 \newcommand\subsection{\@startsection{subsection}{2}{\parindent}%
                                      {4mm}%
                                      {4mm}%
-                                     {\normalsize\bfseries}{}}
+                                     {\normalsize\nohyph\bfseries}{}}
 \newcommand\subsubsection{\@startsection{subsubsection}{3}{\parindent}%
                                      {4mm}%
                                      {4mm}%
@@ -497,6 +503,8 @@
     \@nobreakfalse
     \endgroup
 }
-
+\sloppy % авто увеличение пробелов между словами при невозможности переносов
+\clubpenalties 2 10000 150 % запрет одной оторванной строки сверху
+\widowpenalties 2 10000 150 % и снизу
 \endinput
 
