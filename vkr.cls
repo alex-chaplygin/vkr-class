@@ -387,7 +387,7 @@
     \setcounter{числоПлакатов}{0}
     \section*{СОДЕРЖАНИЕ}%
     \@starttoc{toc}%
-    \списокПлакатов
+    \списокПлакатовСодержание
     }
 
 \newcommand*\l@section{\@dottedtocline{1}{0pt}{1.3em}}
@@ -453,7 +453,8 @@
                {\end{figure}}
 \newcounter{числоПлакатов}               
 \newcommand{\заголовок}[1]{%
-  \добавитьПлакат{\arabic{числоПлакатов}}{#1}
+  \добавитьПлакат{\arabic{числоПлакатов}}{#1}%
+  \добавитьПлакатСодержание{\arabic{числоПлакатов}}{#1}%
   \caption{#1}}
 
 \def\добавитьПлакат#1#2{% добавляет в aux команду записи в lop файл
@@ -461,8 +462,16 @@
       {\string\@writefile{lop}{\печатьПлакат{Лист #1. #2}}}
 }
 
+\def\добавитьПлакатСодержание#1#2{% добавляет в aux команду записи в lop файл
+  \immediate\write\@auxout
+      {\string\@writefile{lpc}{\печатьПлакатСодержание{#1}{#2}}}
+}
+
 \def\печатьПлакат#1{% вывод строки списка плакатов
   \par #1}
+
+\def\печатьПлакатСодержание#1#2{%
+  \noindent #2 (Графический материал / #2.png) \hfill Лист #1\break}
 
 % читает и вставляет файл плакатов (main.lop), перезаписывает его и открывает
 \def\списокПлакатов{%
@@ -472,6 +481,18 @@
     \if@filesw
       \expandafter\newwrite\csname tf@lop\endcsname
       \immediate\openout \csname tf@lop\endcsname \jobname.lop\relax
+    \fi
+    \@nobreakfalse
+    \endgroup
+}
+
+\def\списокПлакатовСодержание{%
+  \begingroup
+    \makeatletter
+    \@input{\jobname.lpc}%
+    \if@filesw
+      \expandafter\newwrite\csname tf@lpc\endcsname
+      \immediate\openout \csname tf@lpc\endcsname \jobname.lpc\relax
     \fi
     \@nobreakfalse
     \endgroup
