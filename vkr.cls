@@ -351,15 +351,24 @@
 \newlength\belowcaptionskip
 \setlength\abovecaptionskip{10\p@}
 \setlength\belowcaptionskip{5\p@}
+
+% функция проверки вхождения подстроки #1 в строку #2
+\def\instring#1#2{TT\fi\begingroup
+  \edef\x{\endgroup\noexpand\in@{#1}{#2}}\x\ifin@}
+
 \long\def\@makecaption#1#2{% заголовки для рисунков и таблиц
   \vskip\abovecaptionskip
   \sbox\@tempboxa{#1 -- #2}%
-  \ifdim \wd\@tempboxa >\hsize
-    #1 -- #2\par
+%  \ifdim \wd\@tempboxa >\hsize
+%    #1 -- #2\par
+%  \else
+  \global \@minipagefalse
+  \if\instring{Таб}{#1}
+  \hb@xt@\hsize{\box\@tempboxa\hfil}% заголовок таблицы по левому краю
   \else
-    \global \@minipagefalse
-    \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
+  \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}% заголовок рисунка по центру
   \fi
+%  \fi
   \vskip\belowcaptionskip}
 
 % Таблицы
@@ -379,6 +388,17 @@
                  \if@app{\refstepcounter{tablecnt}}{}\fi
                  \@float{table}}
 {\end@float}
+
+% Положение рисунков и таблиц
+\renewcommand{\topfraction}{0.9}	% max fraction of floats at top
+\renewcommand{\bottomfraction}{0.8}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}     % 2 may work better
+\renewcommand{\textfraction}{0.07}	% allow minimal text w. figs
+    %   Parameters for FLOAT pages (not text pages):
+\renewcommand{\floatpagefraction}{0.7}	% require fuller float pages
+	% N.B.: floatpagefraction MUST be less than topfraction !!
 
 % Содержание
 
