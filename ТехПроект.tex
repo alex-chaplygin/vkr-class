@@ -43,7 +43,7 @@ JavaScript – объектно-ориентированный язык прог
 
 Диаграмма компонентов описывает особенности физического представления разрабатываемой системы. Она позволяет определить архитектуру системы, установив зависимости между программными компонентами, в роли которых может выступать как исходный, так и исполняемый код. Основными графическими элементами диаграммы компонентов являются компоненты, интерфейсы, а также зависимости между ними. На рисунке \ref{comp:image} изображена диаграмма компонентов для проектируемой системы. Она включает в себя сервер с операционной системой, на которой установлена система управления содержимым, включающая в себя базу данных и интерфейс. Помимо этого на диаграмме изображен клиентский компьютер с операционной системой, на которой установлен браузер.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \center{\includegraphics[width=1\linewidth]{comp}}
 \caption{Диаграмма компонентов}
 \label{comp:image}
@@ -53,7 +53,7 @@ JavaScript – объектно-ориентированный язык прог
 
 На рисунке \ref{data:image} представлена схема обмена данными между сценариями компонента при вызове компонента на странице сайта.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \center{\includegraphics[width=1\linewidth]{data}}
 \caption{Диаграмма компонентов}
 \label{data:image}
@@ -69,9 +69,9 @@ JavaScript – объектно-ориентированный язык прог
 
 Диаграмма размещения (рис.~\ref{place:image}) отражает физические взаимосвязи между программными и аппаратными компонентами системы.
 
-\begin{figure}[h]
+\begin{figure}[ht]
 \center{\includegraphics[width=0.57\linewidth]{place}}
-\caption{Диаграмма размещения}
+\caption{Диаграмма размещения. Не помещается на страницу. Очень длинный заголовок}
 \label{place:image}
 \end{figure}
 
@@ -79,24 +79,20 @@ JavaScript – объектно-ориентированный язык прог
 
 В таблице \ref{ssevsws:table} приведен пример использования пакета xltabular с автоматическим расчетом ширины столбца.
 
-\begin{table}[h]
-	\caption{Сравнение протоколов SSE и WebSocket}
-        \label{ssevsws:table}
-\begin{tabular}{|p{4cm}|p{5cm}|p{5cm}|}
-\hline
-	  & SSE & WebSocket \\ 
-%	\endfirsthead
-%	\continuecaption{Продолжение таблицы \ref{ssevsws:table}}
-%	~ & \centrow SSE & \centrow WebSocket \\ \hline 
-%	\finishhead
+\begin{xltabular}{\textwidth}{|c|X|X|}
+	\caption{Сравнение протоколов SSE и WebSocket\label{ssevsws:table}}\\ \hline
+	~  & \thead {SSE} & \thead {WebSocket} \\ \hline
+	\endfirsthead
+	\continuecaption{Продолжение таблицы \ref{ssevsws:table}}
+	~ & \thead {SSE} & \thead {WebSocket} \\ \hline 
+	\finishhead
 	Направленность & 
 	Однонаправленный, полудуплексный: данные посылает только сервер & 
 	Двунаправленный, полнодуплексный: и сервер, и клиент могут обмениваться сообщениями \\ \hline 
 	Соединение  & HTTP & WS \\ \hline 
 	Тип данных & Только текст & Бинарные и текстовые данные \\ \hline 
 	Доп. возможности & Встроенный механизм идентификаторов событий и переподключения & Переподключение и идентификация события реализуются на стороне приложения
-\end{tabular}
-\end{table}
+\end{xltabular}
 
 \subsection{Содержание информационных блоков. Основные сущности}
 
@@ -109,25 +105,41 @@ JavaScript – объектно-ориентированный язык прог
 
 В состав сущности "<Новости"> можно включить атрибуты, представленные в таблице \ref{news:table}.
 
-%\begin{xltabular}{\textwidth}{|l|l|p{1.7cm}|X|}
-%	\caption{Атрибуты сущности "<Новости">\label{news:table}}\\ \hline
-
-%\thead{Поле} & \thead{Тип} & \thead{Обяза-\\тельное} & \thead{Описание} \\ \hline
-%	\thead{1} & \thead{2} & \thead{3} & \thead{4} \\ \hline
-%	\endfirsthead
-%	\continuecaption{Продолжение таблицы \ref{news:table}}
-%	\thead{1} & \thead{2} & \thead{3} & \thead{4} \\ \hline
-%	\finishhead
-%	\_id & ObjectId & true & Уникальный идентификатор \\ \hline 
-%	head & String & true & Заголовок новости \\ \hline 
-%	short & String & false & Аннотация к новости \\ \hline 
-%	createdAt & Date & true & Время создания новости \\ \hline 
-%	author & String & false & Автор новости \\ \hline 
-%	content & String & true & Текст новости \\ \hline 
-%	views & Integer & true & Количество просмотров новости зарегистрированными пользователями
-%\end{xltabular}
+\begin{xltabular}{\textwidth}{|l|l|p{1.7cm}|X|}
+	\caption{Атрибуты сущности "<Новости">\label{news:table}}\\ \hline
+	\thead{Поле} & \thead{Тип} & \thead{Обяза-\\тельное} & \thead{Описание} \\ \hline
+	\thead{1} & \thead{2} & \thead{3} & \thead{4} \\ \hline
+	\endfirsthead
+	\continuecaption{Продолжение таблицы \ref{news:table}}
+	\thead{1} & \thead{2} & \thead{3} & \thead{4} \\ \hline
+	\finishhead
+	\_id & ObjectId & true & Уникальный идентификатор \\ \hline 
+	head & String & true & Заголовок новости \\ \hline 
+	short & String & false & Аннотация к новости \\ \hline 
+	createdAt & Date & true & Время создания новости \\ \hline 
+	author & String & false & Автор новости \\ \hline 
+	content & String & true & Текст новости \\ \hline 
+	views & Integer & true & Количество просмотров новости зарегистрированными пользователями
+\end{xltabular}
 
 Пример использования различных типов столбцов представлен в таблице \ref{prod:table}. Рекомендуется использовать пакет xltabular для создания таблиц.
+
+\begin{xltabular}{\textwidth}{|R|C{2.5cm}|l|T|}
+	\caption{Атрибуты  сущности "<Новости разметки в LaTeX"> с использованием различных типов столбцов и многострочным заголовком\label{prod:table}}\\ \hline
+	\thead{Поле} & \thead{Тип} & \thead{Обяза-\\тельное} & \thead{Описание} \\ \hline
+	\thead{1} & \thead{2} & \thead{3} & \thead{4} \\ \hline
+	\endfirsthead
+	\continuecaption{Продолжение таблицы \ref{prod:table}}
+	\thead{1} & \thead{2} & \thead{3} & \thead{4} \\ \hline
+	\finishhead
+	\_id & ObjectId & true & Уникальный идентификатор \\ \hline 
+	head & String & true & Заголовок новости \\ \hline 
+	short & String & false & Аннотация к новости \\ \hline 
+	createdAt & Date & true & Время создания новости \\ \hline 
+	author & String & false & Автор новости \\ \hline 
+	content & String & true & Текст новости \\ \hline 
+	views & Integer & true & Количество просмотров новости зарегистрированными пользователями
+\end{xltabular}
 
 В системе предусмотрен внутренний механизм связи между разделами и элементами информационных блоков, поэтому введения дополнительных идентификаторов при реализации связей между сущностями не предполагается.
 

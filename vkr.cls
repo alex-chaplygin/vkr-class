@@ -372,10 +372,6 @@
   \vskip\belowcaptionskip}
 
 % Таблицы
-
-\usepackage{array} % для определения новых типов столбцов таблиц
-\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} % новый тип столбца C - фиксированная ширина столбца с выравниванием по центру
-
 \newcounter{table}
 \newcounter{tablecnt} %всего таблиц
 \renewcommand\thetable{\thesection.\@arabic\c@table}

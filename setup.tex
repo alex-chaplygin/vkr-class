@@ -4,17 +4,19 @@
 \graphicspath{{images/}} % путь к изображениям
 \usepackage[hidelinks]{hyperref}
 
-%\usepackage{xltabular}[debugshow] % для вставки таблиц
-%\usepackage{makecell}
-%\renewcommand\theadfont{}
-%\newcolumntype{T}{>{\centering\arraybackslash}X} % новый тип столбца T - автоматическая ширина столбца с выравниванием по центру
-%\newcolumntype{R}{>{\raggedleft\arraybackslash}X} % новый тип столбца R - автоматическая ширина столбца с выравниванием по правому краю
-%\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} % новый тип столбца C - фиксированная ширина столбца с выравниванием по центру
-%\newcolumntype{r}[1]{>{\raggedleft\arraybackslash}p{#1}} % новый тип столбца r - фиксированная ширина столбца с выравниванием по правому краю
+\usepackage{xltabular} % для вставки таблиц
+\usepackage{makecell}
+\renewcommand\theadfont{} % шрифт в /thead
+\usepackage{array} % для определения новых типов столбцов таблиц
+\newcolumntype{T}{>{\centering\arraybackslash}X} % новый тип столбца T - автоматическая ширина столбца с выравниванием по центру
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X} % новый тип столбца R - автоматическая ширина столбца с выравниванием по правому краю
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} % новый тип столбца C - фиксированная ширина столбца с выравниванием по центру
+\newcolumntype{r}[1]{>{\raggedleft\arraybackslash}p{#1}} % новый тип столбца r - фиксированная ширина столбца с выравниванием по правому краю
 \newcommand{\centrow}{\centering\arraybackslash} % командой \centrow можно центрировать одну ячейку (заголовок) в столбце типа X или p, оставив в оcтальных ячейках другой тип выравнивания
-%\newcommand{\finishhead}{\endhead\hline\endlastfoot}
-%\newcommand{\continuecaption}[1]{\caption*{#1}\\ \hline }
+\newcommand{\finishhead}{\endhead\hline\endlastfoot}
+\newcommand{\continuecaption}[1]{\caption*{#1}\\ \hline }
+\usepackage{etoolbox}
+\AtBeginEnvironment{xltabular}{\refstepcounter{tablecnt}} % подсчет таблиц xltabular, обычные таблицы подсчитываются в классе
 
 % из-за того что babel переопределяет имена заголовков
 \addto\captionsrussian{\renewcommand{\figurename}{Рисунок}}
-
