@@ -242,7 +242,7 @@
 \newcommand\subsubsection{\@startsection{subsubsection}{3}{\parindent}%
                                      {4mm}%
                                      {4mm}%
-                                     {\normalsize\bfseries}{}}
+                                     {\normalsize\nohyph\bfseries}{}}
 \newcommand\paragraph{\@startsection{paragraph}{4}{\parindent}%
                                      {4mm}%
                                      {4mm}%
@@ -344,6 +344,7 @@
 \newenvironment{figure}
                {
                  \if@app{\refstepcounter{figurecnt}}{}\fi
+                 \vspace{8mm}
                  \@float{figure}}
                {\end@float}
 
