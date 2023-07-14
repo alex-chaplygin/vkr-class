@@ -350,7 +350,7 @@
 \newlength\abovecaptionskip
 \newlength\belowcaptionskip
 \setlength\abovecaptionskip{10\p@}
-\setlength\belowcaptionskip{5\p@}
+\setlength\belowcaptionskip{-0.6em}
 
 % функция проверки вхождения подстроки #1 в строку #2
 \def\instring#1#2{TT\fi\begingroup
@@ -359,16 +359,16 @@
 \long\def\@makecaption#1#2{% заголовки для рисунков и таблиц
   \vskip\abovecaptionskip
   \sbox\@tempboxa{#1 -- #2}%
-%  \ifdim \wd\@tempboxa >\hsize
-%    #1 -- #2\par
-%  \else
-  \global \@minipagefalse
-  \if\instring{Таб}{#1}
-  \hb@xt@\hsize{\box\@tempboxa\hfil}% заголовок таблицы по левому краю
+  \ifdim \wd\@tempboxa >\hsize
+    #1 -- #2\par
   \else
-  \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}% заголовок рисунка по центру
+    \global \@minipagefalse
+    \if\instring{Таб}{#1}
+    \hb@xt@\hsize{\box\@tempboxa\hfil}% заголовок таблицы по левому краю
+    \else
+    \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}% заголовок рисунка по центру
+    \fi
   \fi
-%  \fi
   \vskip\belowcaptionskip}
 
 % Таблицы
