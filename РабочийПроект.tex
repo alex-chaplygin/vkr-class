@@ -3,15 +3,15 @@
 
 Можно выделить следующий список классов и их методов, использованных при разработке web-приложения (таблица \ref{class:table}). Для таблицы используется пакет longtable c целью проверки совместимости между xltabular и longtable. Для новых таблиц предпочтительнее использовать пакет xltabular.
 
-\begin{longtable}[l]{|p{2.5cm}|p{2.5cm}|p{4.85cm}|p{4.85cm}|}
+\begin{xltabular}{\textwidth}{|p{2.5cm}|p{2.5cm}|p{4.85cm}|p{4.85cm}|}
 \caption{Описание классов Bitrix, используемых в приложении\label{class:table}}\\
 \hline \centrow Название класса & \centrow Модуль, к которому относится класс & \centrow Описание класса & \centrow Методы \\
-\hline \centrow 1 & \centrow 2 & \centrow 3 & \centrow 4\\
+\hline \centrow 1 & \centrow 2 & \centrow 3 & \centrow 4\\ \hline
 \endfirsthead
 \caption*{Продолжение таблицы \ref{class:table}}\\
-\hline \centrow 1 & \centrow 2 & \centrow 3 & \centrow 4\\
+\hline \centrow 1 & \centrow 2 & \centrow 3 & \centrow 4\\ \hline
 \finishhead
-\hline CMain & Главный модуль & CMain – главный класс страницы web-приложения. После одного из этапов по загрузке страницы в сценарии становится доступным инициализированный системой объект данного класса с именем \$APPLICATION & void ShowTitle(string property\_code = «title», bool strip\_tags = true)
+CMain & Главный модуль & CMain – главный класс страницы web-приложения. После одного из этапов по загрузке страницы в сценарии становится доступным инициализированный системой объект данного класса с именем \$APPLICATION & void ShowTitle(string property\_code = «title», bool strip\_tags = true)
 Выводит заголовок страницы
 void SetTitle(string title)
 Устанавливает заголовок страницы
@@ -20,7 +20,7 @@ void ShowCSS(bool external = true, bool XhtmlStyle = true)
 Выводит таблицу стилей CSS страницы\\
 \hline CFile & Главный модуль & CFile – Класс для работы с файлами и изображениями & array GetFileArray (int file\_id)
 Метод возвращает массив, содержащий описание файла (путь к файлу, имя файла, размер) с идентификатором file\_id
-\end{longtable}
+\end{xltabular}
 
 \subsection{Модульное тестирование разработанного web-сайта}
 
