@@ -1,11 +1,12 @@
 \section{Рабочий проект}
 \subsection{Классы, используемые при разработке сайта}
 
-Можно выделить следующий список классов и их методов, использованных при разработке web-приложения (таблица \ref{class:table}). Для таблицы используется пакет longtable c целью проверки совместимости между xltabular и longtable. Для новых таблиц предпочтительнее использовать пакет xltabular.
+Можно выделить следующий список классов и их методов, использованных при разработке web-приложения (таблица \ref{class:table}). Пример таблицы с уменьшенным межстрочным интервалом.
 
-\begin{xltabular}{\textwidth}{|p{2.5cm}|p{2.5cm}|p{4.85cm}|p{4.85cm}|}
+\renewcommand{\arraystretch}{0.8} % уменьшение расстояний до сетки таблицы
+\begin{xltabular}{\textwidth}{|p{2.5cm}|p{2.5cm}|>{\setlength{\baselineskip}{0.7\baselineskip}}p{4.85cm}|>{\setlength{\baselineskip}{0.7\baselineskip}}p{4.85cm}|}
 \caption{Описание классов Bitrix, используемых в приложении\label{class:table}}\\
-\hline \centrow Название класса & \centrow Модуль, к которому относится класс & \centrow Описание класса & \centrow Методы \\
+\hline \centrow \setlength{\baselineskip}{0.7\baselineskip} Название класса & \centrow \setlength{\baselineskip}{0.7\baselineskip} Модуль, к которому относится класс & \centrow Описание класса & \centrow Методы \\
 \hline \centrow 1 & \centrow 2 & \centrow 3 & \centrow 4\\ \hline
 \endfirsthead
 \caption*{Продолжение таблицы \ref{class:table}}\\
@@ -21,6 +22,7 @@ void ShowCSS(bool external = true, bool XhtmlStyle = true)
 \hline CFile & Главный модуль & CFile – Класс для работы с файлами и изображениями & array GetFileArray (int file\_id)
 Метод возвращает массив, содержащий описание файла (путь к файлу, имя файла, размер) с идентификатором file\_id
 \end{xltabular}
+\renewcommand{\arraystretch}{1.0} % восстановление сетки
 
 \subsection{Модульное тестирование разработанного web-сайта}
 
