@@ -40,6 +40,7 @@
   \@setfontsize\footnotesize\@xpt{15pt}
 }
 \newcommand\large{\@setfontsize\large\@xviipt{22}} % большой шрифт
+\newcommand\tiny{\@setfontsize\tiny\@vipt{6pt}} % мелкий шрифт
 
 % Параграфы
 \renewcommand\baselinestretch{\interval} % полуторный интервал
