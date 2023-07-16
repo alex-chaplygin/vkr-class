@@ -8,8 +8,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{vkr}[VKR class]
 
-\setlength\paperheight{297mm} % размеры страницы A4
-\setlength\paperwidth{210mm}
+%\setlength\paperheight{297mm} % размеры страницы A4
+%\setlength\paperwidth{210mm}
 
 \if@compatibility\else
 \DeclareOption{draft}{\setlength\overfullrule{5pt}}
@@ -53,23 +53,44 @@
 \@highpenalty 301
 
 % Разметка страницы
-\setlength{\hoffset}{-1in} % установка точки отсчета - левый верхний угол
-\setlength{\voffset}{-1in}
-\setlength\headheight{2cm} % размер верхнего поля
-\setlength\headsep{0pt} % нет заголовка
-\setlength\topskip{14\p@} % базовая линия для первой строки на странице
-\setlength\footskip{1cm} % нижний отступ
-\setlength\maxdepth{0.5\topskip} % 
-\setlength{\topmargin}{0pt} % верхний margin
-\setlength{\textwidth}{\paperwidth} % расчет ширины текста
-\addtolength{\textwidth}{-3cm} % левое поле
-\addtolength{\textwidth}{-1.5cm} % правое поле
-\setlength\textheight{\paperheight} % расчет вертикальной длины текста
-\addtolength{\textheight}{-\headheight}
-\addtolength{\textheight}{-\footskip}
-\addtolength{\textheight}{-1cm} % место для номера страницы
-\setlength{\evensidemargin}{3cm} % левое поле
-\setlength{\oddsidemargin}{3cm}
+\newlength\pagetop
+\newlength\pagebottom
+\newlength\pageleft
+\newlength\pageright
+\newlength\pwidth % ширина A4
+\newlength\pheight % высота A4
+\setlength\pagetop{2cm}
+\setlength\pagebottom{2cm}
+\setlength\pageleft{3cm}
+\setlength\pageright{1.5cm}
+\setlength\pwidth{210mm}
+\setlength\pheight{297mm}
+
+\def\setuppage#1#2#3#4#5#6{%
+  \paperheight=#6 % размеры страницы A4
+  \paperwidth=#5
+  \pdfpagewidth=#5
+  \pdfpageheight=#6
+  \pagestyle{plain}
+  \setlength{\hoffset}{-1in} % установка точки отсчета - левый верхний угол
+  \setlength{\voffset}{-1in}
+  \setlength\headheight{#1} % размер верхнего поля
+  \setlength\headsep{0pt} % нет заголовка
+  \setlength\topskip{14\p@} % базовая линия для первой строки на странице
+  \setlength\footskip{0.5#2} % нижний отступ
+  \setlength\maxdepth{0.5\topskip} % 
+  \setlength{\topmargin}{0pt} % верхний margin
+  \setlength{\textwidth}{\paperwidth} % расчет ширины текста
+  \addtolength{\textwidth}{-#3} % левое поле
+  \addtolength{\textwidth}{-#4} % правое поле
+  \setlength\textheight{\paperheight} % расчет вертикальной длины текста
+  \addtolength{\textheight}{-\headheight}
+  \addtolength{\textheight}{-\footskip}
+  \addtolength{\textheight}{-0.5#2} % место для номера страницы
+  \setlength{\evensidemargin}{#3} % левое поле
+  \setlength{\oddsidemargin}{#3}
+}
+\setuppage\pagetop\pagebottom\pageleft\pageright\pwidth\pheight
 
 % Изображения и таблицы (плавающие элементы)
 
@@ -408,7 +429,6 @@
 \newcommand\tableofcontents{%
     \setcounter{tablecnt}{0}
     \setcounter{figurecnt}{0}
-    \setcounter{числоПлакатов}{0}
     \section*{СОДЕРЖАНИЕ}%
     \@starttoc{toc}%
     \списокПлакатовСодержание
@@ -470,11 +490,18 @@
     \string\setcounter{tablecnt}{\arabic{tablecnt}}}
 }
 
+% Альбомный лист
+\newenvironment{landscape}
+               {\newpage\setuppage\pageleft\pageright\pagebottom\pagetop\pheight\pwidth}
+               {\eject\setuppage\pagetop\pagebottom\pageleft\pageright\pwidth\pheight}
+
 % Плакаты
 \newenvironment{плакат}
-               {\begin{figure}[ht!]
+               {\begin{landscape}
+                   \begin{center}
+                   \begin{figure}[ht!]
                \stepcounter{числоПлакатов}}
-               {\end{figure}}
+               {\end{figure}\end{center}\end{landscape}}
 \newcounter{числоПлакатов}               
 \newcommand{\заголовок}[1]{%
   \добавитьПлакат{\arabic{числоПлакатов}}{#1}%
