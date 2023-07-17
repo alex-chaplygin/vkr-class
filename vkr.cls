@@ -89,6 +89,8 @@
   \addtolength{\textheight}{-0.5#2} % место для номера страницы
   \setlength{\evensidemargin}{#3} % левое поле
   \setlength{\oddsidemargin}{#3}
+  \setlength{\linewidth}{\textwidth}
+  \setlength{\columnwidth}{\textwidth}
 }
 \setuppage\pagetop\pagebottom\pageleft\pageright\pwidth\pheight
 
@@ -492,16 +494,18 @@
 
 % Альбомный лист
 \newenvironment{landscape}
-               {\newpage\setuppage\pageleft\pageright\pagebottom\pagetop\pheight\pwidth}
+               {\newpage
+                 \eject\setuppage\pageleft\pageright\pagebottom\pagetop\pheight\pwidth
+               }
                {\eject\setuppage\pagetop\pagebottom\pageleft\pageright\pwidth\pheight}
 
 % Плакаты
 \newenvironment{плакат}
-               {\begin{landscape}
+               {
+                 \begin{figure}[H]
                    \begin{center}
-                   \begin{figure}[ht!]
                \stepcounter{числоПлакатов}}
-               {\end{figure}\end{center}\end{landscape}}
+               {\end{center}\end{figure}}
 \newcounter{числоПлакатов}               
 \newcommand{\заголовок}[1]{%
   \добавитьПлакат{\arabic{числоПлакатов}}{#1}%
