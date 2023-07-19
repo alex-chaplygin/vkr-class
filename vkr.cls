@@ -91,6 +91,9 @@
   \setlength{\oddsidemargin}{#3}
   \setlength{\linewidth}{\textwidth}
   \setlength{\columnwidth}{\textwidth}
+  \setlength{\@colht}\textheight
+  \setlength{\@colroom}\textheight
+  \setbox\@outputbox \vbox to \@colht {\unvbox\@outputbox}
 }
 \setuppage\pagetop\pagebottom\pageleft\pageright\pwidth\pheight
 
@@ -497,7 +500,9 @@
                {\newpage
                  \eject\setuppage\pageleft\pageright\pagebottom\pagetop\pheight\pwidth
                }
-               {\eject\setuppage\pagetop\pagebottom\pageleft\pageright\pwidth\pheight}
+               {\eject\setuppage\pagetop\pagebottom\pageleft\pageright\pwidth\pheight
+  \setlength{\@colht}\pheight
+               }
 
 % Плакаты
 \newenvironment{плакат}
