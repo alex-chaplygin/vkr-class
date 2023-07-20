@@ -494,33 +494,6 @@
     \string\setcounter{tablecnt}{\arabic{tablecnt}}}
 }
 
-% Альбомный лист как поворот на 90 градусов
-
-\def\LS@rot{%
-  \setbox\@outputbox\vbox{\hbox{\rotatebox{90}{\box\@outputbox}}}}
-
-\newenvironment{landscapel}
-               {\clearpage
-                 \begingroup
-                 \vsize=\textwidth
-                 \hsize=\textheight
-                 \linewidth=\hsize
-                 \columnwidth=\hsize
-                 \@colroom=\vsize
-                 \textheight=\vsize
-                 \@colht=\vsize
-                 \let\LS@makecol=\@makecol
-                 \let\LS@makefcolumn=\@makefcolumn
-                 \def\@makecol{\LS@makecol\LS@rot}%
-                 \def\@makefcolumn##1{\LS@makefcolumn{##1}\LS@rot}
-               }
-               { \clearpage
-                 \endgroup
-                 \global\@colht=\textheight
-                 \global\vsize=\textheight
-                 \global\@colroom=\textheight
-               }
-
 % Плакаты
 \newenvironment{плакат}
                {
