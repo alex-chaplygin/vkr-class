@@ -499,7 +499,7 @@
 \def\LS@rot{%
   \setbox\@outputbox\vbox{\hbox{\rotatebox{90}{\box\@outputbox}}}}
 
-\newenvironment{landscape}
+\newenvironment{landscapel}
                {\clearpage
                  \begingroup
                  \vsize=\textwidth
