@@ -20,6 +20,11 @@
 \ExecuteOptions{final}
 \ProcessOptions
 
+% Режимы работы
+\newif\ifВКР
+\newif\ifПрактика
+\newif\ifКурсовая
+
 \newcommand{\interval}{1.7}
 
 \renewcommand\normalsize{ % стандартный размер шрифта
