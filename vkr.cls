@@ -550,5 +550,41 @@
 \sloppy % авто увеличение пробелов между словами при невозможности переносов
 \clubpenalties 2 10000 150 % запрет одной оторванной строки сверху
 \widowpenalties 2 10000 150 % и снизу
-\endinput
 
+% список литературы
+\newenvironment{thebibliography}[1]
+     {\section*{\refname}%
+      \@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+             	\setlength{\topsep}{0pt}                  
+		\setlength{\partopsep}{0pt}
+		\setlength{\itemsep}{0pt}
+		\setlength{\parsep}{0pt}
+		\setlength{\parskip}{0pt}
+		\setlength{\itemindent}{1.75cm}
+		\setlength{\leftmargin}{0pt}
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist}
+
+\def\@biblabel#1{#1.} % формат номера в списке
+     
+\let\@openbib@code\@empty
+
+% описания
+\newenvironment{description}
+               {\list{}{\labelwidth\z@ \itemindent-\leftmargin
+                        \let\makelabel\descriptionlabel}}
+               {\endlist}
+\newcommand*\descriptionlabel[1]{\hspace\labelsep
+                                \normalfont\bfseries #1}
+
+\frenchspacing % пробел после двоеточия
+\endinput
+     

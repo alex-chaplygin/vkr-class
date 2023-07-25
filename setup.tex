@@ -5,6 +5,7 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{float} % определяет метод H для рисунка с переносом на следующую страницу, ели не помещается
 \usepackage{pdflscape}
+\addto{\captionsrussian}{\renewcommand{\refname}{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}}
 \usepackage{xltabular} % для вставки таблиц
 \usepackage{makecell}
 \renewcommand\theadfont{} % шрифт в /thead
@@ -32,6 +33,9 @@
 
 \setlength{\LTpre}{8mm} % отступ сверху таблицы
 \setlength{\LTpost}{6mm} % отступ снизу таблицы
+
+\usepackage{enumitem}
+\setlist{nolistsep,wide=\parindent,itemindent=*} % отступы вокруг списков, выравнивание с учетом разделителя
 
 \usepackage{color} %% это для отображения цвета в коде
 \usepackage{listings} %% листинги кода
