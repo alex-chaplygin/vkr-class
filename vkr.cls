@@ -168,52 +168,103 @@
 \vfill
 \normalsize{Кафедра программной инженерии}
 \vfill
-\large\textbf{ВЫПУСКНАЯ КВАЛИФИКАЦИОННАЯ РАБОТА}\\
-\large\textbf{ПО ПРОГРАММЕ БАКАЛАВРИАТА}\\
+\ifВКР{
+  \large\textbf{ВЫПУСКНАЯ КВАЛИФИКАЦИОННАЯ РАБОТА}\\
+  \large\textbf{ПО ПРОГРАММЕ БАКАЛАВРИАТА}\\
+  \vfill
+  \normalsize\fillcenter{09.03.04 Программная инженерия}\\
+  \renewcommand{\baselinestretch}{1}
+  \footnotesize{(код, наименование ОПОП ВО: направление подготовки, направленность (профиль))}
+  \renewcommand{\baselinestretch}{\interval}
+
+  \normalsize\fillcenter{«Разработка программно-информационных систем»}\\
+}\fi
+\ifПрактика{
+	\large\textbf{ОТЧЕТ}\\
+	\normalsize\noindent\fillcenter{о преддипломной (производственной) практике}\\
+        \renewcommand{\baselinestretch}{1}
+	\footnotesize{наименование вида и типа практики}
+
+        \renewcommand{\baselinestretch}{\interval}	
+	\normalsize на (в) \fillcenter{\ГдеПроводитсяПрактика}
+        \vskip -0.3cm        
+	\footnotesize{наименование предприятия, организации, учреждения}
+
+        \normalsize Студента\hspace{0.5cm}\fillleft{\Курс курса, группы \Группа}\\
+
+        \renewcommand{\baselinestretch}{1}
+	\footnotesize{курса, группы}	
+        \renewcommand{\baselinestretch}{\interval}	
+
+        \normalsize\fillcenter{\АвторПолностьюРод}
+        \vskip -0.3cm        
+	\footnotesize{фамилия, имя, отчество}
+}\else{
+  \normalsize\fillcenter\Тема\\
+  \fillcenter\ТемаВтораяСтрока\\
+  \renewcommand{\baselinestretch}{1}
+  \footnotesize{(название темы)}
+  \renewcommand{\baselinestretch}{\interval}
+  \normalsize\fillcenter{Дипломный проект}\\
+  \renewcommand{\baselinestretch}{1}
+  \footnotesize{(вид ВКР: дипломная работа или дипломный проект)}
+  \renewcommand{\baselinestretch}{\interval}
+}\fi
 \vfill
-\normalsize\fillcenter{09.03.04 Программная инженерия}\\
-\renewcommand{\baselinestretch}{1}
-\footnotesize{(код, наименование ОПОП ВО: направление подготовки, направленность (профиль))}
-\renewcommand{\baselinestretch}{\interval}
-
-\normalsize\fillcenter{«Разработка программно-информационных систем»}\\
-
-\normalsize\fillcenter\Тема\\
-\fillcenter\ТемаВтораяСтрока\\
-\renewcommand{\baselinestretch}{1}
-\footnotesize{(название темы)}
-\renewcommand{\baselinestretch}{\interval}
-
-\normalsize\fillcenter{Дипломный проект}\\
-\renewcommand{\baselinestretch}{1}
-\footnotesize{(вид ВКР: дипломная работа или дипломный проект)}
-\renewcommand{\baselinestretch}{\interval}
-\vfill
-\end{center}
+  \end{center}
+\ifВКР{  
   \begin{tabular}{p{5.8cm}C{4.8cm}C{4.8cm}}
-Автор ВКР & \lhrulefill{\fill} & \fillcenter\Автор\\
-\setarstrut{\footnotesize}
-& \footnotesize{(подпись, дата)} & \footnotesize{(инициалы, фамилия)}\\
-\restorearstrut
-Группа  \underline{\hspace{0.5cm}\Группа \hspace{0.5cm}} & &\\
-\\
-Руководитель ВКР & \lhrulefill{\fill} & \fillcenter\Руководитель\\
-\setarstrut{\footnotesize}
-& \footnotesize{(подпись, дата)} & \footnotesize{(инициалы, фамилия)}\\
-\restorearstrut
-Нормоконтроль & \lhrulefill{\fill} & \fillcenter\Нормоконтроль\\
-\setarstrut{\footnotesize}
-& \footnotesize{(подпись, дата)} & \footnotesize{(инициалы, фамилия)}\\
-\restorearstrut
-\end{tabular}
+    Автор ВКР & \lhrulefill{\fill} & \fillcenter\Автор\\
+    \setarstrut{\footnotesize}
+    & \footnotesize{(подпись, дата)} & \footnotesize{(инициалы, фамилия)}\\
+    \restorearstrut
+    Группа  \underline{\hspace{0.5cm}\Группа \hspace{0.5cm}} & &\\
+    \\
+    Руководитель ВКР & \lhrulefill{\fill} & \fillcenter\Руководитель\\
+    \setarstrut{\footnotesize}
+    & \footnotesize{(подпись, дата)} & \footnotesize{(инициалы, фамилия)}\\
+    \restorearstrut
+    Нормоконтроль & \lhrulefill{\fill} & \fillcenter\Нормоконтроль\\
+    \setarstrut{\footnotesize}
+    & \footnotesize{(подпись, дата)} & \footnotesize{(инициалы, фамилия)}\\
+    \restorearstrut
+  \end{tabular}
 
-\noindent\begin{tabular}{p{5.8cm}C{4.8cm}C{4.8cm}}
-ВКР допущена к защите:& &\\
-Заведующий кафедрой & \lhrulefill{\fill} & \fillcenter\ЗавКаф\\
-\setarstrut{\footnotesize}
-& \footnotesize{(подпись, дата)} & \footnotesize{(инициалы, фамилия)}\\
-\restorearstrut
-\end{tabular}
+  \noindent\begin{tabular}{p{5.8cm}C{4.8cm}C{4.8cm}}
+  ВКР допущена к защите:& &\\
+  Заведующий кафедрой & \lhrulefill{\fill} & \fillcenter\ЗавКаф\\
+  \setarstrut{\footnotesize}
+  & \footnotesize{(подпись, дата)} & \footnotesize{(инициалы, фамилия)}\\
+  \restorearstrut
+  \end{tabular}
+}\fi
+\ifПрактика{
+  \renewcommand{\baselinestretch}{1}
+  \begin{tabular}{C{6.5cm}p{2cm}C{6.5cm}}
+    \normalsize Руководитель практики от предприятия, организации, учреждения & & \normalsize Оценка \underline{\hspace{4cm}} \\
+		
+    \underline{\hspace{3cm}\hspace{3cm}}\newline
+    \footnotesize{должность, звание, степень}&&\\
+    \normalsize\underline{\hspace{3cm}\hspace{3cm}}\newline\footnotesize{фамилия и. о.}&&\underline{\hspace{3cm}\hspace{3cm}}\newline\footnotesize{подпись, дата}\\
+    \\
+    \normalsize Руководитель практики от университета & & \normalsize Оценка \underline{\hspace{4cm}} \\
+		
+    \underline{\hspace{3cm}\hspace{3cm}}\newline
+    \footnotesize{должность, звание, степень}&&\\
+    \normalsize\underline{\hspace{3cm}\hspace{3cm}}\newline\footnotesize{фамилия и. о.}&&\underline{\hspace{3cm}\hspace{3cm}}\newline\footnotesize{подпись, дата}\\
+  \end{tabular}
+}\fi
+\ifВКР{}\else{
+  \vfill
+  \begin{tabular}{C{5cm}C{5cm}C{5cm}}
+    \normalsize Члены комиссии &&\\
+    &\underline{\hspace{5cm}}\newline\footnotesize{подпись, дата}
+    &\underline{\hspace{5cm}}\newline\footnotesize{фамилия и. о.}\\
+    &\underline{\hspace{5cm}}\newline\footnotesize{подпись, дата}
+    &\underline{\hspace{5cm}}\newline\footnotesize{фамилия и. о.}\\
+  \end{tabular}
+}
+\renewcommand{\baselinestretch}{\interval}
 \vfill
 \begin{center}
 \normalsize{Курск \the\year{} г.}
