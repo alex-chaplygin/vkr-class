@@ -205,6 +205,7 @@
   \renewcommand{\baselinestretch}{1}
   \footnotesize{(название темы)}
   \renewcommand{\baselinestretch}{\interval}
+
   \normalsize\fillcenter{Дипломный проект}\\
   \renewcommand{\baselinestretch}{1}
   \footnotesize{(вид ВКР: дипломная работа или дипломный проект)}
@@ -243,27 +244,36 @@
   \begin{tabular}{C{6.5cm}p{2cm}C{6.5cm}}
     \normalsize Руководитель практики от предприятия, организации, учреждения & & \normalsize Оценка \underline{\hspace{4cm}} \\
 		
-    \underline{\hspace{3cm}\hspace{3cm}}\newline
+    \fillcenter{\ДолжнРуководительПрактПредпр}\newline
     \footnotesize{должность, звание, степень}&&\\
-    \normalsize\underline{\hspace{3cm}\hspace{3cm}}\newline\footnotesize{фамилия и. о.}&&\underline{\hspace{3cm}\hspace{3cm}}\newline\footnotesize{подпись, дата}\\
+    \fillcenter{\РуководительПрактПредпр}\newline\footnotesize{фамилия и. о.}&&\underline{\hspace{3cm}\hspace{3cm}}\newline\footnotesize{подпись, дата}\\
     \\
     \normalsize Руководитель практики от университета & & \normalsize Оценка \underline{\hspace{4cm}} \\
 		
-    \underline{\hspace{3cm}\hspace{3cm}}\newline
+    \fillcenter{\ДолжнРуководительПрактУнивер}\newline
     \footnotesize{должность, звание, степень}&&\\
-    \normalsize\underline{\hspace{3cm}\hspace{3cm}}\newline\footnotesize{фамилия и. о.}&&\underline{\hspace{3cm}\hspace{3cm}}\newline\footnotesize{подпись, дата}\\
+    \fillcenter{\РуководительПрактУнивер}\newline\footnotesize{фамилия и. о.}&&\underline{\hspace{3cm}\hspace{3cm}}\newline\footnotesize{подпись, дата}\\
   \end{tabular}
 }\fi
 \ifВКР{}\else{
   \vfill
+  \begin{center}
   \begin{tabular}{C{5cm}C{5cm}C{5cm}}
-    \normalsize Члены комиссии &&\\
-    &\underline{\hspace{5cm}}\newline\footnotesize{подпись, дата}
-    &\underline{\hspace{5cm}}\newline\footnotesize{фамилия и. о.}\\
-    &\underline{\hspace{5cm}}\newline\footnotesize{подпись, дата}
-    &\underline{\hspace{5cm}}\newline\footnotesize{фамилия и. о.}\\
+    \normalsize Члены комиссии & \underline{\hspace{5cm}} & \underline{\hspace{5cm}} \\
+    \setarstrut{\footnotesize}
+    &\footnotesize{подпись, дата} & \footnotesize{фамилия и. о.}\\
+    \restorearstrut
+    & \underline{\hspace{5cm}} & \underline{\hspace{5cm}} \\
+    \setarstrut{\footnotesize}
+    &\footnotesize{подпись, дата} & \footnotesize{фамилия и. о.}\\
+    \restorearstrut
+    & \underline{\hspace{5cm}} & \underline{\hspace{5cm}} \\
+    \setarstrut{\footnotesize}
+    &\footnotesize{подпись, дата} & \footnotesize{фамилия и. о.}\\
+    \restorearstrut
   \end{tabular}
-}
+  \end{center}
+}\fi
 \renewcommand{\baselinestretch}{\interval}
 \vfill
 \begin{center}
