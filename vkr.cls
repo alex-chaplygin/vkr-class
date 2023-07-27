@@ -519,7 +519,7 @@
      \@tempdima #3\relax
      {#4}% здесь не делается box для текста заголовка
      \leaders\hbox{$\m@th
-        \mkern \@dotsep mu\hbox{.}\mkern \@dotsep
+        \mkern \@dotsep mu\hbox{}\mkern \@dotsep
         mu$}\hfill
      \nobreak
      \hb@xt@\@pnumwidth{\hfil\normalfont \normalcolor #5}%
