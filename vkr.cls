@@ -648,6 +648,12 @@
      
 \let\@openbib@code\@empty
 
+\let\oldbib\bibitem
+\def\bibitem#1{%
+  \refstepcounter{bibcount} % счетчик литературы
+  \oldbib{#1}
+}
+
 % описания
 \newenvironment{description}
                {\list{}{\labelwidth\z@ \itemindent-\leftmargin
