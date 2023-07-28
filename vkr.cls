@@ -413,6 +413,20 @@
     \refstepcounter{section}}\fi
 }
 
+\newcommand\applabel[1]{% создает команду для печати буквы приложения
+  \addtocounter{section}{-1}
+  \immediate\write\@auxout
+      {\string\def\csname #1 \endcsname\expandafter{\Asbuk{section}}}
+  \stepcounter{section}
+}
+
+\newcommand\appref[1]{% ссылка на букву
+  \ifdefined #1
+  \edef\loc{\csname #1 \endcsname}
+  \loc
+  \fi
+}
+  
 % Рисунки
 
 \setlength\arraycolsep{5\p@}
