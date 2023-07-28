@@ -400,15 +400,17 @@
 }
 
 % Приложения
+\global\let\appendixbegin\@empty
 \newcommand{\appendix}[1]{
-  \ifdefined\appendixbegin{}\else{%
-    \def\appendixbegin{}
+  \ifx\appendixbegin\@empty{
+    \global\let\appendixbegin\relax
     \setcounter{section}{1}
   }\fi%
   \renewcommand{\thesection}{\Asbuk{section}}
   \section*{ПРИЛОЖЕНИЕ \thesection\ \\ #1}
   \addcontentsline{toc}{section}{ПРИЛОЖЕНИЕ \thesection\ #1}
-  \ifdefined\appendixbegin{\refstepcounter{section}}\fi
+  \ifx\appendixbegin\@empty{}\else{
+    \refstepcounter{section}}\fi
 }
 
 % Рисунки
@@ -433,7 +435,7 @@
 \newcommand\figurename{}
 \newenvironment{figure}
                {
-                 \ifdefined\appendixbegin{}\else{\refstepcounter{figurecnt}}\fi
+                 \ifx\appendixbegin\@empty{\refstepcounter{figurecnt}}\fi
                  \vspace{8mm}
                  \@float{figure}}
                {\end@float}
@@ -555,7 +557,9 @@
   {\string\setcounter{lastpage}{\the\c@page}
     \string\setcounter{числоПлакатов}{\arabic{числоПлакатов}}
     \string\setcounter{figurecnt}{\arabic{figurecnt}}
-    \string\setcounter{tablecnt}{\arabic{tablecnt}}}
+    \string\setcounter{tablecnt}{\arabic{tablecnt}}
+    \string\setcounter{bibcount}{\arabic{bibcount}}
+  }
 }
 
 % Плакаты
@@ -600,6 +604,7 @@
     \endgroup
 }
 
+% генерирует список плакатов после содержания
 \def\списокПлакатовСодержание{%
   \begingroup
     \makeatletter
@@ -616,9 +621,11 @@
 \widowpenalties 2 10000 150 % и снизу
 
 % список литературы
+\newcounter{bibcount} % счетчик литературы
 \newenvironment{thebibliography}[1]
      {\section*{\refname}%
-      \@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}%
+       \@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}%
+       \setcounter{bibcount}{0}
       \list{\@biblabel{\@arabic\c@enumiv}}%
            {\settowidth\labelwidth{\@biblabel{#1}}%
              	\setlength{\topsep}{0pt}                  
