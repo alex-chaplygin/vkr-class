@@ -4,7 +4,7 @@
 Можно выделить следующий список классов и их методов, использованных при разработке web-приложения (таблица \ref{class:table}). Пример таблицы с уменьшенным межстрочным интервалом.
 
 \renewcommand{\arraystretch}{0.8} % уменьшение расстояний до сетки таблицы
-\begin{xltabular}{\textwidth}{|p{2.5cm}|p{2.5cm}|>{\setlength{\baselineskip}{0.7\baselineskip}}p{4.85cm}|>{\setlength{\baselineskip}{0.7\baselineskip}}p{4.85cm}|}
+\begin{xltabular}{\textwidth}{|X|p{2.5cm}|>{\setlength{\baselineskip}{0.7\baselineskip}}p{4.85cm}|>{\setlength{\baselineskip}{0.7\baselineskip}}p{4.85cm}|}
 \caption{Описание классов Bitrix, используемых в приложении\label{class:table}}\\
 \hline \centrow \setlength{\baselineskip}{0.7\baselineskip} Название класса & \centrow \setlength{\baselineskip}{0.7\baselineskip} Модуль, к которому относится класс & \centrow Описание класса & \centrow Методы \\
 \hline \centrow 1 & \centrow 2 & \centrow 3 & \centrow 4\\ \hline
@@ -55,9 +55,8 @@ class ShpoTestCases(TestCase):
 \subsection{Системное тестирование разработанного web-сайта}
 
 На рисунке \ref{main:image} представлена главная страница сайта «Русатом – Аддитивные технологии».
-
-\vspace{-8mm}
-\begin{figure}[ht]
+\newpage % при необходимости можно переносить рисунок на новую страницу
+\begin{figure}[H] % H - рисунок обязательно здесь, или переносится, оставляя пустоту
 \center{\includegraphics[width=1\linewidth]{main1}}
 \center{\includegraphics[width=1\linewidth]{main2}}
 \center{\includegraphics[width=1\linewidth]{main3}}
@@ -65,10 +64,8 @@ class ShpoTestCases(TestCase):
 \label{main:image}
 \end{figure}
 
-\newpage % при необходимости можно переносить рисунок на новую страницу
 На рисунке \ref{menu:image} представлен динамический вывод заголовков, включающий в себя искомые фразы при поиске фраз.
 
-\vspace{-8mm}
 \begin{figure}[ht]
 \center{\includegraphics[width=1\linewidth]{menu}}
 \caption{Динамический вывод заголовков}
@@ -76,9 +73,7 @@ class ShpoTestCases(TestCase):
 \end{figure}
 
 На рисунке \ref{enter:image} представлен ввод данных для публикации новости.
-\newpage
 
-\vspace{-8mm}
 \begin{figure}[ht]
 \center{\includegraphics[width=1\linewidth]{enter}}
 \caption{Ввод данных для публикации очень-очень длинной, интересной и полезной новости}

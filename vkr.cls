@@ -66,8 +66,8 @@
 \newlength\pheight % высота A4
 \setlength\pagetop{2cm}
 \setlength\pagebottom{2cm}
-\setlength\pageleft{3cm}
-\setlength\pageright{1.5cm}
+\setlength\pageleft{2cm}
+\setlength\pageright{1cm}
 \setlength\pwidth{210mm}
 \setlength\pheight{297mm}
 
@@ -400,17 +400,15 @@
 }
 
 % Приложения
-\newif\if@app
-\@apptrue
 \newcommand{\appendix}[1]{
-  \if@app%
-  \@appfalse%
-  \setcounter{section}{1}
-\else\fi%
+  \ifdefined\appendixbegin{}\else{%
+    \def\appendixbegin{}
+    \setcounter{section}{1}
+  }\fi%
   \renewcommand{\thesection}{\Asbuk{section}}
   \section*{ПРИЛОЖЕНИЕ \thesection\ \\ #1}
   \addcontentsline{toc}{section}{ПРИЛОЖЕНИЕ \thesection\ #1}
-  \if@app{}\else\refstepcounter{section}\fi
+  \ifdefined\appendixbegin{\refstepcounter{section}}\fi
 }
 
 % Рисунки
@@ -435,7 +433,7 @@
 \newcommand\figurename{}
 \newenvironment{figure}
                {
-                 \if@app{\refstepcounter{figurecnt}}{}\fi
+                 \ifdefined\appendixbegin{}\else{\refstepcounter{figurecnt}}\fi
                  \vspace{8mm}
                  \@float{figure}}
                {\end@float}
