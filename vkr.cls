@@ -199,7 +199,28 @@
         \normalsize\fillcenter{\АвторПолностьюРод}
         \vskip -0.3cm        
 	\footnotesize{фамилия, имя, отчество}
-}\else{
+}\fi
+\ifКурсовая{
+  \large\textbf{КУРСОВАЯ РАБОТА (ПРОЕКТ)}\\
+  \vskip 1ex
+	\normalsize\noindent по дисциплине \fillcenter\Дисциплина\\
+        \renewcommand{\baselinestretch}{1}
+	\footnotesize{наименование дисциплины}
+
+        \renewcommand{\baselinestretch}{\interval}	  
+	\normalsize\noindent на тему \fillcenter\Тема
+        
+        \fillcenter\ТемаВтораяСтрока
+
+        \normalsize\noindent Направление подготовки (специальность) \fillcenter\КодСпециальности\\
+        \renewcommand{\baselinestretch}{1}
+	\footnotesize{(код, наименование)}
+
+        \renewcommand{\baselinestretch}{\interval}
+        
+        \normalsize\noindent\fillcenter\Специальность
+}\fi
+\ifВКР{
   \normalsize\fillcenter\Тема\\
   \fillcenter\ТемаВтораяСтрока\\
   \renewcommand{\baselinestretch}{1}
@@ -415,15 +436,15 @@
 
 \newcommand\applabel[1]{% создает команду для печати буквы приложения
   \addtocounter{section}{-1}
+  \def\@@b{\Asbuk{section}}
   \immediate\write\@auxout
-      {\string\def\csname #1 \endcsname\expandafter{\Asbuk{section}}}
+      {\string\gdef\csname#1\endcsname\expandafter{\Asbuk{section}}}
   \stepcounter{section}
 }
 
 \newcommand\appref[1]{% ссылка на букву
   \ifdefined #1
-  \edef\loc{\csname #1 \endcsname}
-  \loc
+  #1
   \fi
 }
   
