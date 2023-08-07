@@ -6,24 +6,33 @@
 \vskip 1em
 \normalsize{Кафедра программной инженерии}
 \vskip 1em
-
-\begin{flushright}
-\begin{tabular}{p{.4\textwidth}}
-\centrow УТВЕРЖДАЮ: \\
-\centrow Заведующий кафедрой \\
-\hrulefill \\
-\setarstrut{\footnotesize}
-\centrow\footnotesize{(подпись, инициалы, фамилия)}\\
-\restorearstrut
-«\underline{\hspace{1cm}}»
-\underline{\hspace{3cm}}
-20\underline{\hspace{1cm}} г.\\
-\end{tabular}
-\end{flushright}
+\ifВКР{
+        \begin{flushright}
+        \begin{tabular}{p{.4\textwidth}}
+        \centrow УТВЕРЖДАЮ: \\
+        \centrow Заведующий кафедрой \\
+        \hrulefill \\
+        \setarstrut{\footnotesize}
+        \centrow\footnotesize{(подпись, инициалы, фамилия)}\\
+        \restorearstrut
+        «\underline{\hspace{1cm}}»
+        \underline{\hspace{3cm}}
+        20\underline{\hspace{1cm}} г.\\
+        \end{tabular}
+        \end{flushright}
+        }\fi
 \end{center}
 \vspace{1em}
-\begin{center}{ЗАДАНИЕ НА ВЫПУСКНУЮ КВАЛИФИКАЦИОННУЮ РАБОТУ
-  ПО ПРОГРАММЕ БАКАЛАВРИАТА}\end{center}
+  \begin{center}
+  \large
+\ifВКР{
+ЗАДАНИЕ НА ВЫПУСКНУЮ КВАЛИФИКАЦИОННУЮ РАБОТУ
+  ПО ПРОГРАММЕ БАКАЛАВРИАТА}
+  \else
+ЗАДАНИЕ НА КУРСОВУЮ РАБОТУ (ПРОЕКТ)
+\fi
+\normalsize
+  \end{center}
 \vspace{1em}
 {\parindent0pt
   Студента \АвторРод, шифр\ \Шифр, группа \Группа
@@ -86,7 +95,7 @@
 
 \vskip 2em
 \begin{tabular}{p{6.8cm}C{3.8cm}C{4.8cm}}
-Руководитель \ifВКР{ВКР}\fi & \lhrulefill{\fill} & \fillcenter\Руководитель\\
+Руководитель \ifВКР{ВКР}\else работы (проекта) \fi & \lhrulefill{\fill} & \fillcenter\Руководитель\\
 \setarstrut{\footnotesize}
 & \footnotesize{(подпись, дата)} & \footnotesize{(инициалы, фамилия)}\\
 \restorearstrut

@@ -201,8 +201,9 @@
 	\footnotesize{фамилия, имя, отчество}
 }\fi
 \ifКурсовая{
+  \vskip 1.5em
   \large\textbf{КУРСОВАЯ РАБОТА (ПРОЕКТ)}\\
-  \vskip 1ex
+  \vskip 1.5em
 	\normalsize\noindent по дисциплине \fillcenter\Дисциплина\\
         \renewcommand{\baselinestretch}{1}
 	\footnotesize{наименование дисциплины}
@@ -214,11 +215,38 @@
 
         \normalsize\noindent Направление подготовки (специальность) \fillcenter\КодСпециальности\\
         \renewcommand{\baselinestretch}{1}
-	\footnotesize{(код, наименование)}
+	\footnotesize{\hspace{0.5\linewidth}(код, наименование)}
 
-        \renewcommand{\baselinestretch}{\interval}
+%        \renewcommand{\baselinestretch}{\interval}
         
         \normalsize\noindent\fillcenter\Специальность
+        
+          \begin{xltabular}{\textwidth}{p{5.5cm}>{\centering\arraybackslash}X>{\centering\arraybackslash}X}
+            Автор работы (проекта) & \fillcenter\Автор & \lhrulefill{\fill}\\
+            \setarstrut{\footnotesize}
+            &  \footnotesize{(инициалы, фамилия)} & \footnotesize{(подпись, дата)}\\
+            \restorearstrut
+          Группа  \fillcenter{\Группа}&&\\
+          \end{xltabular}
+          \vfill
+        \begin{xltabular}{\textwidth}{p{7.0cm}>{\centering\arraybackslash}X>{\centering\arraybackslash}X}
+            Руководитель работы (проекта) & \fillcenter\Руководитель & \lhrulefill{\fill}\\
+            \setarstrut{\footnotesize}
+            &  \footnotesize{(инициалы, фамилия)} & \footnotesize{(подпись, дата)}\\
+            \restorearstrut
+        \end{xltabular}
+          \vskip -2em
+        \begin{xltabular}{\textwidth}{p{6.5cm}>{\centering\arraybackslash}X>{\centering\arraybackslash}X}
+            Работа (проект) защищена & \lhrulefill{\fill} &\\
+            \setarstrut{\footnotesize}
+            & \footnotesize{(дата)}&\\
+            \restorearstrut
+        \end{xltabular}
+        \vskip -2em
+        \begin{flushleft}
+        \normalsize\noindent\hspace{0.1cm} Оценка \underline{\hspace{5cm}}
+        \end{flushleft}
+  \vskip 2em
 }\fi
 \ifВКР{
   \normalsize\fillcenter\Тема\\
@@ -278,22 +306,20 @@
 }\fi
 \ifВКР{}\else{
   \vfill
-  \begin{center}
-  \begin{tabular}{C{5cm}C{5cm}C{5cm}}
-    \normalsize Члены комиссии & \underline{\hspace{5cm}} & \underline{\hspace{5cm}} \\
+  \begin{xltabular}{\textwidth}{p{4.5cm}>{\centering\arraybackslash}X>{\centering\arraybackslash}X}
+    \normalsize Члены комиссии & \lhrulefill{\fill} & \lhrulefill{\fill} \\
     \setarstrut{\footnotesize}
     &\footnotesize{подпись, дата} & \footnotesize{фамилия и. о.}\\
     \restorearstrut
-    & \underline{\hspace{5cm}} & \underline{\hspace{5cm}} \\
+    & \lhrulefill{\fill} & \lhrulefill{\fill} \\
     \setarstrut{\footnotesize}
     &\footnotesize{подпись, дата} & \footnotesize{фамилия и. о.}\\
     \restorearstrut
-    & \underline{\hspace{5cm}} & \underline{\hspace{5cm}} \\
+    & \lhrulefill{\fill} & \lhrulefill{\fill} \\
     \setarstrut{\footnotesize}
     &\footnotesize{подпись, дата} & \footnotesize{фамилия и. о.}\\
     \restorearstrut
-  \end{tabular}
-  \end{center}
+  \end{xltabular}
 }\fi
 \renewcommand{\baselinestretch}{\interval}
 \vfill
