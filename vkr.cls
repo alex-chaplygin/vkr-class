@@ -66,8 +66,8 @@
 \newlength\pheight % высота A4
 \setlength\pagetop{2cm}
 \setlength\pagebottom{2cm}
-\setlength\pageleft{2cm}
-\setlength\pageright{1cm}
+\setlength\pageleft{3cm}
+\setlength\pageright{1.5cm}
 \setlength\pwidth{210mm}
 \setlength\pheight{297mm}
 
