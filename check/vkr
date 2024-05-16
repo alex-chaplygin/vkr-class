@@ -1,0 +1,9 @@
+cd /tmp
+git clone $1
+cd $(basename $1)/latex
+evince main.pdf&
+for i in *.tex;
+do
+echo "------------Проверка $i---------------";
+perl ~/Документы/ЮЗГУ/vkr.pl $i;
+done
