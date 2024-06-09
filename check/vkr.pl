@@ -19,6 +19,10 @@ while (<>) {
 	    printf("Точка в конце:\n");
 	    printf("%i: %s\n", $line, $_);
 	}
+#	if ($itemize && !m/\;$/) {
+#	    printf("Двоеточие в конце:\n");
+#	    printf("%i: %s\n", $line, $_);
+#	}
 	if ($enumerate && !m/^\\item\s+[А-Я]/ && !m/^\\item\s+[A-Z]/) {
 	    printf("С заглавной буквы:\n");
 	    printf("%i: %s\n", $line, $_);
