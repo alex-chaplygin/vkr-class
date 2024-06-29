@@ -1,0 +1,22 @@
+{
+    "manifest_version": 3,
+    "name": "Добавление в библиотеку",
+    "version": "1.0.0",
+    "description": "Добавление в библиотеку",
+    "background": {
+	"service_worker": "service-worker.js"
+    },
+    "action": {},
+    "commands": {
+	"_execute_action": {
+	    "suggested_key": "Ctrl+Shift+F",
+	    "description": "Заполнить форму ВКР данными из текущей строки и переместить курсор на следующую позицию"
+	}
+    },
+    "options_ui": {
+	"page" : "options.html",
+	"open_in_tab": false
+    },	
+    "permissions": ["activeTab", "scripting", "storage"],
+    "host_permissions": ["file://*/*"]
+}
