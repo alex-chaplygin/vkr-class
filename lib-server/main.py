@@ -37,7 +37,7 @@ for i, row in enumerate(table.rows):
 res = []
 for vkr in vkrs:
     vkr_1 = vkr[1].split(',')
-    vkr_theme = vkr[2]
+    vkr_theme = vkr[2].lstrip().rstrip()
     vkr_name = vkr_1[0]
     vkr_id = vkr_1[1][6:]
     name = path + vkr_id
@@ -48,13 +48,13 @@ for vkr in vkrs:
     tab = doc.tables[0]
     data = [clean_text(c.text) for c in tab.column_cells(1)]
     if data[1] != vkr_id:
-        print('Шифр не совпадает', vkr_id, data[0])
+        print('Шифр не совпадает', vkr_id, data[1], sep='\n', end='')
         exit(1)
     if data[2] != vkr_name:
-        print('ФИО не совпадает', vkr_name, data[2])
+        print('ФИО не совпадает', vkr_name, data[2], sep='\n', end='')
         exit(1)
     if data[5] != vkr_theme:
-        print('Тема не совпадает', vkr_id, vkr_theme, data[5])
+        print('Тема не совпадает', vkr_id, vkr_theme, data[5], sep='|')
         exit(1)
     res.append(process(data))
 
