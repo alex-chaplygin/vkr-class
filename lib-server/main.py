@@ -1,4 +1,5 @@
 import json
+import os.path
 from sys import argv, exit
 from docx import Document
 
@@ -23,7 +24,7 @@ def process(data):
 
 document = Document(argv[1])
 path = argv[2]
-table = document.tables[0]
+table = document.tables[1]
 vkrs = []
 
 keys = None
@@ -35,20 +36,25 @@ for i, row in enumerate(table.rows):
 
 res = []
 for vkr in vkrs:
-    vkr_name = vkr[1]
+    vkr_1 = vkr[1].split(',')
     vkr_theme = vkr[2]
-    vkr_id = vkr[3]
-    doc = Document(path + vkr_id + ".docx")
+    vkr_name = vkr_1[0]
+    vkr_id = vkr_1[1][6:]
+    name = path + vkr_id
+    if not os.path.exists(name + ".pdf") or not os.path.exists(name + ".docx"):
+        print("Нет ВКР и/или сведений", vkr_name)
+        exit(1)
+    doc = Document(name + ".docx")
     tab = doc.tables[0]
     data = [clean_text(c.text) for c in tab.column_cells(1)]
-    if data[0] != vkr_id:
+    if data[1] != vkr_id:
         print('Шифр не совпадает', vkr_id, data[0])
         exit(1)
-    if data[1] != vkr_name:
-        print('ФИО не совпадает', vkr_name, data[1])
+    if data[2] != vkr_name:
+        print('ФИО не совпадает', vkr_name, data[2])
         exit(1)
-    if data[4] != vkr_theme:
-        print('Тема не совпадает', vkr_theme, data[4])
+    if data[5] != vkr_theme:
+        print('Тема не совпадает', vkr_id, vkr_theme, data[5])
         exit(1)
     res.append(process(data))
 
