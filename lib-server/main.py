@@ -15,12 +15,27 @@ def process(data):
     '''
     Замена строк
     '''
-    data.insert(6, '')
     code = data[10]
+    if code != '09.04.04' and code != '09.03.04':
+        print('Неправильная специальность:', data[1], code)
+        exit(1)
     data[10] = code + ('.68' if code == '09.04.04' else '.62') + ' - Программная инженерия'
     data[11] = 'КАФЕДРА ПРОГРАММНОЙ ИНЖЕНЕРИИ'
     data[12] = '68 - Магистр' if code == '09.04.04' else '62 - Бакалавр'
     return data
+
+
+def make_word(res):
+    doc = Document()
+    table = doc.add_table(rows=len(res), cols=4)
+    for i in range(len(res)):
+        cells = table.rows[i].cells
+        cells[0].text = ''
+        cells[1].text = res[i][1]
+        cells[2].text = res[i][4]
+        cells[3].text = res[i][0]
+    doc.save('/tmp/act.docx')
+
 
 document = Document(argv[1])
 path = argv[2]
@@ -38,7 +53,7 @@ res = []
 for vkr in vkrs:
     vkr_1 = vkr[1].split(',')
     vkr_theme = vkr[2].lstrip().rstrip()
-    vkr_name = vkr_1[0]
+    vkr_name = vkr_1[0].lstrip().rstrip()
     vkr_id = vkr_1[1][6:]
     name = path + vkr_id
     if not os.path.exists(name + ".pdf") or not os.path.exists(name + ".docx"):
@@ -46,16 +61,18 @@ for vkr in vkrs:
         exit(1)
     doc = Document(name + ".docx")
     tab = doc.tables[0]
-    data = [clean_text(c.text) for c in tab.column_cells(1)]
-    if data[1] != vkr_id:
-        print('Шифр не совпадает', vkr_id, data[1], sep='\n', end='')
+    data = [clean_text(c.text).lstrip().rstrip() for c in tab.column_cells(1)][1:]
+    if data[0] != vkr_id:
+        print('Шифр не совпадает', vkr_id, data[0], sep='\n')
         exit(1)
-    if data[2] != vkr_name:
-        print('ФИО не совпадает', vkr_name, data[2], sep='\n', end='')
+    if data[1] != vkr_name:
+        print('ФИО не совпадает', vkr_name, data[1], sep='\n')
         exit(1)
-    if data[5] != vkr_theme:
-        print('Тема не совпадает', vkr_id, vkr_theme, data[5], sep='|')
+    if data[4] != vkr_theme:
+        print('Тема не совпадает', vkr_id, vkr_name, vkr_theme, data[4], sep='\n')
         exit(1)
     res.append(process(data))
+
+make_word(res)
 
 print(json.dumps(res))
