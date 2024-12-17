@@ -575,7 +575,7 @@
 \newcommand*\l@section{\@dottedtocline{1}{0pt}{1.3em}}
 \newcommand*\l@subsection{\@dottedtocline{2}{0pt}{2.0em}}
 \newcommand*\l@subsubsection{\@dottedtocline{3}{0pt}{2.8em}}
-\newcommand*\l@paragraph{\@dottedtocline{4}{0pt}{3.3em}}
+\newcommand*\l@paragraph{\@dottedtocline{4}{0pt}{3.6em}}
 
 \def\@dottedtocline#1#2#3#4#5{%
   \ifnum #1>\c@tocdepth \else
