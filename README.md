@@ -3,7 +3,7 @@
 
 Для работы необходимо установить:
 
-- Miktex (texlive для Linux) - дистрибутив Latex.
+- texlive - дистрибутив Latex.
 
 - TexStudio - редактор для Windows.
 
