@@ -36,6 +36,9 @@ def make_word(res):
         cells[3].text = res[i][0]
     doc.save('/tmp/act.docx')
 
+if len(argv) != 3:
+    print("main.py <prikaz> <pdf path>")
+    exit(1)
 
 document = Document(argv[1])
 path = argv[2]
@@ -54,24 +57,21 @@ for vkr in vkrs:
     vkr_1 = vkr[1].split(',')
     vkr_theme = vkr[2].lstrip().rstrip()
     vkr_name = vkr_1[0].lstrip().rstrip()
-    vkr_id = vkr_1[1][6:]
+    vkr_id = vkr_1[1][6:17]
     name = path + vkr_id
     if not os.path.exists(name + ".pdf") or not os.path.exists(name + ".docx"):
-        print("Нет ВКР и/или сведений", vkr_name)
-        exit(1)
-    doc = Document(name + ".docx")
-    tab = doc.tables[0]
-    data = [clean_text(c.text).lstrip().rstrip() for c in tab.column_cells(1)][1:]
-    if data[0] != vkr_id:
-        print('Шифр не совпадает', vkr_id, data[0], sep='\n')
-        exit(1)
-    if data[1] != vkr_name:
-        print('ФИО не совпадает', vkr_name, data[1], sep='\n')
-        exit(1)
-    if data[4] != vkr_theme:
-        print('Тема не совпадает', vkr_id, vkr_name, vkr_theme, data[4], sep='\n')
-        exit(1)
-    res.append(process(data))
+        print("Нет ВКР и/или сведений", vkr_name, vkr_id)
+    else:
+        doc = Document(name + ".docx")
+        tab = doc.tables[0]
+        data = [clean_text(c.text).lstrip().rstrip() for c in tab.column_cells(1)][1:]
+        if data[0] != vkr_id:
+            print('Шифр не совпадает', vkr_id, data[0], sep='\n')
+        if data[1] != vkr_name:
+            print('ФИО не совпадает', vkr_name, data[1], sep='\n')
+        if data[4] != vkr_theme:
+            print('Тема не совпадает', vkr_id, vkr_name, vkr_theme, data[4], sep='\n')
+        res.append(process(data))
 
 make_word(res)
 
