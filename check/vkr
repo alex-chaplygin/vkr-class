@@ -1,6 +1,6 @@
 cd /tmp
 git clone --depth 1 $1
-cd $(basename $1)/latex
+cd $(basename $1)/$2
 evince main.pdf&
 for i in *.tex;
 do
