@@ -1,4 +1,10 @@
+#/usr/bin/perl -CS
 use strict;
+use utf8;
+use Encode;
+use open "OUT" => ":utf8",":std";
+use open "IN" => ":utf8",":std";
+
 my $enumerate = 0;
 my $itemize = 0;
 my $line = 0;
@@ -28,6 +34,12 @@ sub print_dot {
     print_msg("Точка в конце:", $str, $num);
 }
 
+# печать сообщения о строчной букве
+sub print_small {
+    my ($str, $num) = @_;
+    print_msg("С маленькой буквы:", $str, $num);
+}
+
 while (<>) {
     $line++;
     if (m/begin\{enumerate/) {
@@ -41,10 +53,14 @@ while (<>) {
 	$itemize = 0;
 	for (my $i = 0; $i < $num_items; $i++) {
 	    my $l = $itemize_array{$i};
-	    if ($l !~ m/\;$/ && $i < $num_items - 1) {
+	    # точка с запятой на английской и русской раскладке
+	    if ($l !~ m/\;$/ && $l !~ m/\;$/ && $i < $num_items - 1) {
 		print_dot_comma($l, $line - ($num_items - $i));
 	    } elsif ($l !~ m/\.$/ && $i == $num_items - 1) {
 		print_dot($l, $line - ($num_items - $i));
+	    }
+	    if ($l !~ m/^\\item\s+[а-яa-zA-Z0-9"]/) {
+	    	print_small($l, $line - ($num_items - $i));		
 	    }
 	}
 	#print(%itemize_array);
