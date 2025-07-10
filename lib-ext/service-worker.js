@@ -23,11 +23,10 @@ chrome.action.onClicked.addListener((tab) => {
   );
 });
 
-const spec3 = '09.03.04.62';
-const spec4 = '09.04.04.68';
-const kaf = 'КАФЕДРА ПРОГРАММНОЙ ИНЖЕНЕРИИ';
-
 function fillTable(values) {
+    const spec3 = '09.03.04.62';
+    const spec4 = '09.04.04.68';
+    const kaf = 'КАФЕДРА ПРОГРАММНОЙ ИНЖЕНЕРИИ';
     const ids = ["sys_code", "author", "supervisor", "critic", "title", "keywords", "annotation",
 		 "year1", "pages_count", "publishing", "ui-spec", "ui-kafv", "ui-vo"];
     const opts = ["spec", "kafv", "vo"];
