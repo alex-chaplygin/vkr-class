@@ -23,6 +23,10 @@ chrome.action.onClicked.addListener((tab) => {
   );
 });
 
+const spec3 = '09.03.04.62';
+const spec4 = '09.04.04.68';
+const kaf = 'КАФЕДРА ПРОГРАММНОЙ ИНЖЕНЕРИИ';
+
 function fillTable(values) {
     const ids = ["sys_code", "author", "supervisor", "critic", "title", "keywords", "annotation",
 		 "year1", "pages_count", "publishing", "ui-spec", "ui-kafv", "ui-vo"];
@@ -36,9 +40,21 @@ function fillTable(values) {
 	els[i].value = values[10 + i];
     }
     let l = document.getElementById("spec");
-    l.options.item((values[10][4] == '3') ? 39 : 42).selected = true;
+    for (let i = 0; i < l.options.length; i++) {
+	if (l.options.item(i).value == ((values[10][4] == '3') ? spec3 : spec4)) {
+            l.options.item(i).selected = true;
+            break;
+	}
+    }
+//    l.options.item((values[10][4] == '3') ? 37 : 38).selected = true;
     l = document.getElementById("kafv");
-    l.options.item(19).selected = true;
+//    l.options.item(19).selected = true;
+    for (let i = 0; i < l.options.length; i++) {
+	if (l.options.item(i).value == kaf) {
+            l.options.item(i).selected = true;
+            break;
+	}
+    }
     l = document.getElementById("vo");
     l.options.item((values[10][4] == '3') ? 2 : 4).selected = true;
 }
