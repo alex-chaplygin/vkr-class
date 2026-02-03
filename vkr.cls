@@ -253,7 +253,8 @@
         \begin{flushleft}
         \normalsize\noindent\hspace{0.1cm} Оценка \underline{\hspace{5cm}}
         \end{flushleft}
-  \vskip 2em
+        \addtocounter{tablecnt}{-4}
+        \vskip 2em
 }\fi
 \ifВКР{
   \normalsize\fillcenter\Тема\\
